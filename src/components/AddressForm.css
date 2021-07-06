@@ -1,0 +1,33 @@
+.addressForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  width: 100%;
+  z-index: 999;
+}
+
+.geosuggest {
+  width: 100%;
+}
+
+.geosuggest__item {
+  list-style: none;
+  z-index: 999;
+}
+
+.geosuggest__suggests--hidden {
+  visibility: hidden !important;
+}
+
+.geosuggest__suggests-wrapper {
+  position: relative;
+  z-index: 999;
+}
+
+.geosuggest__suggests {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
