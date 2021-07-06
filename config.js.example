@@ -1,0 +1,4 @@
+module.exports = {
+  GOOGLE_PLACES_API_KEY: '',
+  GET_GEO_JSON_URL: ''
+};

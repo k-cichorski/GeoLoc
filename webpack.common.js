@@ -1,6 +1,7 @@
 const path = require('path');
 const { ProvidePlugin, optimize } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { GOOGLE_PLACES_API_KEY } = require('./config.js');
 
 module.exports = {
   mode: 'development',
@@ -18,9 +19,9 @@ module.exports = {
         exclude: /(node_modules)/,
         use: [{
           loader: 'babel-loader',
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"]
-          }
+          // options: {
+          //   presets: ["@babel/preset-env", "@babel/preset-react"]
+          // }
         }]
       },
       {
@@ -58,7 +59,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './public/index.html',
-      inject: true
+      inject: true,
+      GOOGLE_PLACES_API: `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_PLACES_API_KEY}&libraries=places`
     })
   ]
 };
