@@ -2,11 +2,11 @@ import { Tabs, Tab } from 'react-bootstrap';
 import AddressForm from './AddressForm';
 import './SearchControls.css';
 
-function SearchControls() {
+function SearchControls({changeMapPoint}) {
   return (
     <Tabs defaultActiveKey="address">
       <Tab eventKey="address" title="Address">
-        <AddressForm />
+        <AddressForm changeMapPoint={changeMapPoint} />
       </Tab>
 
       <Tab eventKey="coord" title="Coordinates">
