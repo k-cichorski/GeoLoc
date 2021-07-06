@@ -12,7 +12,7 @@ function Map({ coords, locName, positions, zoom, scrollWheelZoom }) {
         />
         <Marker position={coords}>
           <Popup>
-            {locName}
+            {locName ? locName : `Lat: ${coords.lat}, Lng: ${coords.lng}`}
           </Popup>
         </Marker>
         <MapPolygon positions={positions} zoom={zoom} />

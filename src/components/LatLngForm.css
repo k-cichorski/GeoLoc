@@ -1,0 +1,29 @@
+.latLngForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.latLngForm > form {
+  width: 100%;
+}
+
+.latLngFormGroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.latLngFormGroup > button {
+  margin-bottom: 1rem;
+}
+
+.latLngFormGroup > .form-group {
+  width: 40%;
+}
+
+.input-group > .invalid-tooltip {
+  z-index: 999;
+}

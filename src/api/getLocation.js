@@ -1,7 +1,5 @@
 import { GET_GEO_JSON_URL } from "../../config";
 
-
-
 async function getLocation({location, label}) {
   const fetchUrl = `${GET_GEO_JSON_URL}?${new URLSearchParams(location)}`;
   const response = await fetch(fetchUrl);
