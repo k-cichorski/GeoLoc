@@ -11,11 +11,11 @@ export const NEW_LOCATION = 'NEW_LOCATION';
 function reducer(state, action) {
   switch(action.type){
       case NEW_LOCATION:
-          const { location, label } = action.payload;
+          const { location, label, coords } = action.payload;
           return {
               ...state,
               positions: location,
-              coords: location[0],
+              coords,
               locName: label
           }
       default:

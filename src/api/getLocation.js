@@ -9,7 +9,8 @@ async function getLocation({location, label}) {
   const positions = geoJson.coordinates[0].map(([lng, lat]) => [lat, lng]);
   return Promise.resolve({
     location: positions,
-    label
+    label,
+    coords: location
   })
 };
 
