@@ -5,7 +5,7 @@ import Map from './components/Map';
 import { useStateValue } from './store/StateProvider';
 
 function App() {
-  const [state, dispatch] = useStateValue();
+  const [state, ] = useStateValue();
 
   return (
     <div id="main">
