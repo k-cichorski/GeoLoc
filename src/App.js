@@ -1,6 +1,7 @@
 import './custom.scss';
 import './App.css';
 import SearchControls from './components/SearchControls';
+import Map from './components/Map';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <header>Welcome to GeoLoc!</header>
       <p>Search by...</p>
       <SearchControls />
+      <Map />
     </div>
   );
 }
