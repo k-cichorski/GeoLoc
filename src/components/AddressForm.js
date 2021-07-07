@@ -3,7 +3,8 @@ import { ListGroup } from 'react-bootstrap';
 import './AddressForm.css';
 import getLocation from '../api/getLocation';
 import { useStateValue } from '../store/StateProvider';
-import { NEW_LOCATION } from '../store/reducer';
+import { NEW_LOCATION, action } from '../store/reducer';
+import { useRef, useEffect } from 'react';
 
 const GeoSuggestConfig = {
   suggestsClassName: 'list-group',
@@ -13,7 +14,8 @@ const GeoSuggestConfig = {
 };
 
 function AddressForm() {
-  const [, dispatch] = useStateValue();
+  const [{locName}, dispatch] = useStateValue();
+  const map = useRef(null);
   const renderSuggestItem = function (suggestion) {
     return (
       <ListGroup.Item action variant="light">
@@ -22,20 +24,23 @@ function AddressForm() {
     )
   };
 
+  useEffect(() => {
+    map.current.update(locName);
+  }, [locName]);
+
   const onSuggestSelect = async function (suggestion) {
     if (!suggestion) {
       return
     }
     const location = await getLocation(suggestion);
-    location && dispatch({
-      type: NEW_LOCATION,
-      payload: location
-    });
+    location && dispatch(
+      action(NEW_LOCATION, location)
+    );
   };
 
   return (
     <div className="addressForm">
-      <Geosuggest {...GeoSuggestConfig} renderSuggestItem={renderSuggestItem} onSuggestSelect={onSuggestSelect} />
+      <Geosuggest {...GeoSuggestConfig} renderSuggestItem={renderSuggestItem} onSuggestSelect={onSuggestSelect} initialValue={locName} ref={map} />
     </div>
   )
 }

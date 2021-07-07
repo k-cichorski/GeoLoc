@@ -10,19 +10,44 @@ export const initialState = {
 };
 
 export const NEW_LOCATION = 'NEW_LOCATION';
+export const NEW_LAT = 'NEW_LAT';
+export const NEW_LNG = 'NEW_LNG';
+
+export function action(type, payload) {
+  return {
+    type,
+    payload
+  }
+}
 
 function reducer(state, action) {
-  switch(action.type){
-      case NEW_LOCATION:
-          const { location, label, coords } = action.payload;
-          return {
-              ...state,
-              positions: location,
-              coords,
-              locName: label
-          }
-      default:
-          return state;
+  switch (action.type) {
+    case NEW_LOCATION:
+      const { location, label, coords } = action.payload;
+      return {
+        ...state,
+        positions: location,
+        coords,
+        locName: label
+      }
+    case NEW_LAT:
+      return {
+        ...state,
+        coords: {
+          ...state.coords,
+          lat: action.payload
+        }
+      }
+    case NEW_LNG:
+      return {
+        ...state,
+        coords: {
+          ...state.coords,
+          lng: action.payload
+        }
+      }
+    default:
+      return state;
   }
 }
 

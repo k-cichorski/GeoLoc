@@ -16,6 +16,10 @@
   z-index: 999;
 }
 
+.geosuggest__item--active > button {
+  background-color: rgb(255, 230, 160) !important;
+}
+
 .geosuggest__suggests--hidden {
   visibility: hidden !important;
 }

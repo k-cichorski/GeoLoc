@@ -2,13 +2,10 @@ import { Form, Button, InputGroup } from 'react-bootstrap';
 import './CoordinatesForm.css';
 import getLocation from '../api/getLocation';
 import { useStateValue } from '../store/StateProvider';
-import { NEW_LOCATION } from '../store/reducer';
-import { useState } from 'react';
+import { NEW_LOCATION, NEW_LAT, NEW_LNG, action } from '../store/reducer';
 
 function CoordinatesForm() {
   const [{ coords }, dispatch] = useStateValue();
-  const [lat, setLat] = useState(coords.lat);
-  const [lng, setLng] = useState(coords.lng);
   const regex = /(\d)*\.(\d)*$/i;
 
   const onSubmit = async function (e) {
@@ -19,23 +16,27 @@ function CoordinatesForm() {
     }
     const location = {
       lat: latInput.value,
-      lng: lngInput.value
+      lng: lngInput.value,
     };
-    let processedLocation = await getLocation({
-      location
+    const processedLocation = await getLocation({
+      location,
+      label: `Lat: ${latInput.value}, Lng: ${lngInput.value}`
     });
-    processedLocation && dispatch({
-      type: NEW_LOCATION,
-      payload: processedLocation
-    });
+    processedLocation && dispatch(
+      action(NEW_LOCATION, processedLocation)
+    );
   };
 
   const onChangeLat = function (e) {
-    setLat(e.target.value);
+    dispatch(
+      action(NEW_LAT, e.target.value)
+    );
   };
 
   const onChangeLng = function (e) {
-    setLng(e.target.value);
+    dispatch(
+      action(NEW_LNG, e.target.value)
+    );
   };
 
   return (
@@ -49,10 +50,10 @@ function CoordinatesForm() {
             required
             type="number"
             step="any"
-            defaultValue={coords.lat}
+            value={coords.lat}
             placeholder={`e.g. ${coords.lat}`}
-            isValid={regex.test(lat)}
-            isInvalid={!regex.test(lat)}
+            isValid={regex.test(coords.lat)}
+            isInvalid={!regex.test(coords.lat)}
             onChange={onChangeLat} />
           <Form.Control.Feedback type="invalid" tooltip>
             Latitude has to be a floating point value!
@@ -67,10 +68,10 @@ function CoordinatesForm() {
             required 
             type="number"
             step="any"
-            defaultValue={coords.lng}
+            value={coords.lng}
             placeholder={`e.g. ${coords.lng}`}
-            isValid={regex.test(lng)}
-            isInvalid={!regex.test(lng)}
+            isValid={regex.test(coords.lng)}
+            isInvalid={!regex.test(coords.lng)}
             onChange={onChangeLng} />
           <Form.Control.Feedback type="invalid" tooltip>
             Longitude has to be a floating point value!
