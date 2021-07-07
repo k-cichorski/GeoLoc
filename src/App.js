@@ -4,6 +4,7 @@ import SearchControls from './components/SearchControls';
 import Map from './components/Map';
 import { useStateValue } from './store/StateProvider';
 import { Spinner } from 'react-bootstrap';
+import pin from '../public/images/pin.svg';
 
 function App() {
   const [state, ] = useStateValue();
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <div id="main">
-      <header>Welcome to GeoLoc!</header>
+      <header>Welcome to <img src={pin} /> GeoLoc!</header>
 
       <div className="spinner-container">
         {

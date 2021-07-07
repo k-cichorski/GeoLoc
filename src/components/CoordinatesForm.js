@@ -3,6 +3,7 @@ import './CoordinatesForm.css';
 import getLocation from '../api/getLocation';
 import { useStateValue } from '../store/StateProvider';
 import { NEW_LOCATION, NEW_LAT, NEW_LNG, action } from '../store/reducer';
+import searchIcon from '../../public/images/search.svg';
 
 function CoordinatesForm() {
   const [{ userCoords }, dispatch] = useStateValue();
@@ -77,7 +78,7 @@ function CoordinatesForm() {
             Longitude has to be a floating point value!
           </Form.Control.Feedback>
           <Button variant="light" type="submit">
-            Go!
+            <img src={searchIcon} />
           </Button>
         </InputGroup>
       </Form>

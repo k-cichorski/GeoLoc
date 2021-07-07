@@ -1,7 +1,13 @@
 {
   "short_name": "GeoLoc",
   "name": "Geo Localizer",
-  "icons": [],
+  "icons": [
+    {
+      "src": "./images/pin.svg",
+      "sizes": "24x24",
+      "type": "image/svg+xml"
+    }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#282c34",

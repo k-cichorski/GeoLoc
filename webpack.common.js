@@ -1,6 +1,7 @@
 const path = require('path');
 const { ProvidePlugin, optimize } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const { GOOGLE_PLACES_API_KEY } = require('./config.js');
 
 module.exports = {
@@ -43,6 +44,14 @@ module.exports = {
         {
           loader: 'sass-loader'
         }]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       }
     ]
   },
@@ -58,6 +67,7 @@ module.exports = {
       template: './public/index.html',
       inject: true,
       GOOGLE_PLACES_API: `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_PLACES_API_KEY}&libraries=places`
-    })
+    }),
+    new FaviconsWebpackPlugin('./public/images/pin.svg')
   ]
 };

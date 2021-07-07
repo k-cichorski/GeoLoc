@@ -4,6 +4,10 @@ header {
   font-size: 2rem;
 }
 
+header > img {
+  height: 3rem;
+}
+
 #main {
   display: flex;
   justify-content: center;
