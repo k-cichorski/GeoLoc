@@ -23,6 +23,9 @@ function AddressForm() {
   };
 
   const onSuggestSelect = async function (suggestion) {
+    if (!suggestion) {
+      return
+    }
     let location = await getLocation(suggestion);
     dispatch({
       type: NEW_LOCATION,
