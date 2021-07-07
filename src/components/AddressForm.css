@@ -20,6 +20,10 @@
   background-color: rgb(255, 230, 160) !important;
 }
 
+.geosuggest__item > button:hover {
+  background-color: rgb(255, 230, 160) !important;
+}
+
 .geosuggest__suggests--hidden {
   visibility: hidden !important;
 }
