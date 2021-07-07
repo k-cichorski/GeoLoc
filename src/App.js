@@ -13,7 +13,7 @@ function App() {
     <div id="main">
       <header>Welcome to GeoLoc!</header>
 
-      <div className="spinner-wrapper">
+      <div className="spinner-container">
         {
           searching ?
               <Spinner animation="border" variant="warning" />
@@ -21,8 +21,12 @@ function App() {
             <p>Search by...</p>
         }
       </div>
+
       <SearchControls />
-      <Map {...state} />
+      
+      <div className="map-container">
+        <Map {...state} />
+      </div>
     </div>
   );
 }

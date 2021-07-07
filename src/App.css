@@ -12,7 +12,17 @@ header {
   height: 100vh;
 }
 
-.spinner-wrapper {
+.spinner-container {
   margin-bottom: 1rem;
   height: 2rem;
+}
+
+.map-container {
+  width: 80%;
+  height: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
