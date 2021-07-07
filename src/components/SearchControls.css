@@ -15,5 +15,14 @@
   .tab-content {
     width: 99%;
     max-width: 99%;
+    height: fit-content;
+  }
+
+  .coordinatesForm > form {
+    flex-direction: column;
+  }
+
+  .addressForm > form {
+    flex-direction: column;
   }
 }
