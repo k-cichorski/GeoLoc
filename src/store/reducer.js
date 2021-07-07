@@ -4,6 +4,10 @@ export const initialState = {
     lat: 51.505,
     lng: -0.09
   },
+  userCoords: {
+    lat: 51.505,
+    lng: -0.09
+  },
   locName: 'City of London',
   zoom: 13,
   scrollWheelZoom: true
@@ -28,21 +32,22 @@ function reducer(state, action) {
         ...state,
         positions: location,
         coords,
+        userCoords: coords,
         locName: label
       }
     case NEW_LAT:
       return {
         ...state,
-        coords: {
-          ...state.coords,
+        userCoords: {
+          ...state.userCoords,
           lat: action.payload
         }
       }
     case NEW_LNG:
       return {
         ...state,
-        coords: {
-          ...state.coords,
+        userCoords: {
+          ...state.userCoords,
           lng: action.payload
         }
       }

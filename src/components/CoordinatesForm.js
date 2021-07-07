@@ -5,7 +5,7 @@ import { useStateValue } from '../store/StateProvider';
 import { NEW_LOCATION, NEW_LAT, NEW_LNG, action } from '../store/reducer';
 
 function CoordinatesForm() {
-  const [{ coords }, dispatch] = useStateValue();
+  const [{ userCoords }, dispatch] = useStateValue();
   const regex = /(\d)*\.(\d)*$/i;
 
   const onSubmit = async function (e) {
@@ -50,10 +50,10 @@ function CoordinatesForm() {
             required
             type="number"
             step="any"
-            value={coords.lat}
-            placeholder={`e.g. ${coords.lat}`}
-            isValid={regex.test(coords.lat)}
-            isInvalid={!regex.test(coords.lat)}
+            value={userCoords.lat}
+            placeholder={`e.g. ${userCoords.lat}`}
+            isValid={regex.test(userCoords.lat)}
+            isInvalid={!regex.test(userCoords.lat)}
             onChange={onChangeLat} />
           <Form.Control.Feedback type="invalid" tooltip>
             Latitude has to be a floating point value!
@@ -68,10 +68,10 @@ function CoordinatesForm() {
             required 
             type="number"
             step="any"
-            value={coords.lng}
-            placeholder={`e.g. ${coords.lng}`}
-            isValid={regex.test(coords.lng)}
-            isInvalid={!regex.test(coords.lng)}
+            value={userCoords.lng}
+            placeholder={`e.g. ${userCoords.lng}`}
+            isValid={regex.test(userCoords.lng)}
+            isInvalid={!regex.test(userCoords.lng)}
             onChange={onChangeLng} />
           <Form.Control.Feedback type="invalid" tooltip>
             Longitude has to be a floating point value!
