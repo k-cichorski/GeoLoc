@@ -26,8 +26,8 @@ function AddressForm() {
     if (!suggestion) {
       return
     }
-    let location = await getLocation(suggestion);
-    dispatch({
+    const location = await getLocation(suggestion);
+    location && dispatch({
       type: NEW_LOCATION,
       payload: location
     });

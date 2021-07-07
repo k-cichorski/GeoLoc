@@ -24,7 +24,7 @@ function CoordinatesForm() {
     let processedLocation = await getLocation({
       location
     });
-    dispatch({
+    processedLocation && dispatch({
       type: NEW_LOCATION,
       payload: processedLocation
     });
