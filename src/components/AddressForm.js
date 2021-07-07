@@ -15,7 +15,7 @@ const GeoSuggestConfig = {
 
 function AddressForm() {
   const [{ locName }, dispatch] = useStateValue();
-  const map = useRef(null);
+  const geoSuggest = useRef(null);
   const renderSuggestItem = function (suggestion) {
     return (
       <ListGroup.Item action variant="light">
@@ -25,7 +25,7 @@ function AddressForm() {
   };
 
   useEffect(() => {
-    map.current.update(locName);
+    geoSuggest.current.update(locName);
   }, [locName]);
 
   const onSuggestSelect = async function (suggestion) {
@@ -41,7 +41,7 @@ function AddressForm() {
   return (
     <div className="addressForm">
       <Geosuggest {...GeoSuggestConfig} renderSuggestItem={renderSuggestItem}
-        onSuggestSelect={onSuggestSelect} initialValue={locName} ref={map} />
+        onSuggestSelect={onSuggestSelect} initialValue={locName} ref={geoSuggest} />
     </div>
   )
 }
