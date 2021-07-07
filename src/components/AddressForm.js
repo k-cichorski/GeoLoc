@@ -40,7 +40,8 @@ function AddressForm() {
 
   return (
     <div className="addressForm">
-      <Geosuggest {...GeoSuggestConfig} renderSuggestItem={renderSuggestItem} onSuggestSelect={onSuggestSelect} initialValue={locName} ref={map} />
+      <Geosuggest {...GeoSuggestConfig} renderSuggestItem={renderSuggestItem}
+        onSuggestSelect={onSuggestSelect} initialValue={locName} ref={map} />
     </div>
   )
 }

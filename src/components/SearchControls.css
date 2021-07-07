@@ -18,11 +18,11 @@
     height: fit-content;
   }
 
-  .coordinatesForm > form {
+  .coordinatesForm>form {
     flex-direction: column;
   }
 
-  .addressForm > form {
+  .addressForm>form {
     flex-direction: column;
   }
 }

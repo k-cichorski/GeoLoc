@@ -7,7 +7,7 @@ function handleError(err) {
   return null
 }
 
-async function getLocation({location, label}, dispatch) {
+async function getLocation({ location, label }, dispatch) {
   const fetchUrl = `${GET_GEO_JSON_URL}?${new URLSearchParams(location)}`;
   let response, geoJson;
   toggleSearching(dispatch);

@@ -6,7 +6,7 @@
   width: 100%;
 }
 
-.coordinatesForm > form {
+.coordinatesForm>form {
   width: 100%;
 }
 
@@ -16,14 +16,14 @@
   justify-content: space-evenly;
 }
 
-.coordinatesFormGroup > button {
+.coordinatesFormGroup>button {
   margin-bottom: 1rem;
 }
 
-.coordinatesFormGroup > .form-group {
+.coordinatesFormGroup>.form-group {
   width: 40%;
 }
 
-.input-group > .invalid-tooltip {
+.input-group>.invalid-tooltip {
   z-index: 999;
 }

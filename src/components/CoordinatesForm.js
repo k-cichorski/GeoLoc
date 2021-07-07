@@ -66,7 +66,7 @@ function CoordinatesForm() {
             <InputGroup.Text>Lng:</InputGroup.Text>
           </InputGroup.Prepend>
           <Form.Control
-            required 
+            required
             type="number"
             step="any"
             value={userCoords.lng}

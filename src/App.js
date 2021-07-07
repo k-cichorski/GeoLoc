@@ -7,7 +7,7 @@ import { Spinner } from 'react-bootstrap';
 import pin from '../public/images/pin.svg';
 
 function App() {
-  const [state, ] = useStateValue();
+  const [state,] = useStateValue();
   const { searching } = state;
 
   return (
@@ -17,14 +17,14 @@ function App() {
       <div className="spinner-container">
         {
           searching ?
-              <Spinner animation="border" variant="warning" />
+            <Spinner animation="border" variant="warning" />
             :
             <p>Search by...</p>
         }
       </div>
 
       <SearchControls />
-      
+
       <div className="map-container">
         <Map {...state} />
       </div>

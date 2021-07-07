@@ -13,7 +13,7 @@ export const NEW_LAT = 'NEW_LAT';
 export const NEW_LNG = 'NEW_LNG';
 export const TOGGLE_SEARCHING = 'TOGGLE_SEARCHING';
 
-export function action(type, payload=null) {
+export function action(type, payload = null) {
   return {
     type,
     payload
