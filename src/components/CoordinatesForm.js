@@ -16,7 +16,7 @@ function CoordinatesForm() {
     const [latInput, lngInput] = [e.target[0], e.target[1]];
     if (!regex.test(latInput.value) || !regex.test(lngInput.value)) {
       return
-    };
+    }
     const location = {
       lat: latInput.value,
       lng: lngInput.value
