@@ -1,14 +1,8 @@
 export const initialState = {
   positions: null,
-  coords: {
-    lat: 51.505,
-    lng: -0.09
-  },
-  userCoords: {
-    lat: 51.505,
-    lng: -0.09
-  },
-  locName: 'City of London',
+  coords: { lat: 51.5123443, lng: -0.0909852 },
+  userCoords: { lat: 51.5123443, lng: -0.0909852 },
+  locName: 'City of London, London, UK',
   zoom: 13,
   scrollWheelZoom: true
 };
