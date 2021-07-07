@@ -1,4 +1,4 @@
-.latLngForm {
+.coordinatesForm {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,21 +6,21 @@
   width: 100%;
 }
 
-.latLngForm > form {
+.coordinatesForm > form {
   width: 100%;
 }
 
-.latLngFormGroup {
+.coordinatesFormGroup {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
 
-.latLngFormGroup > button {
+.coordinatesFormGroup > button {
   margin-bottom: 1rem;
 }
 
-.latLngFormGroup > .form-group {
+.coordinatesFormGroup > .form-group {
   width: 40%;
 }
 

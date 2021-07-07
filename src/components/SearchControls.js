@@ -1,6 +1,6 @@
 import { Tabs, Tab } from 'react-bootstrap';
 import AddressForm from './AddressForm';
-import LatLngForm from './LatLngForm';
+import CoordinatesForm from './CoordinatesForm';
 import './SearchControls.css';
 
 function SearchControls() {
@@ -11,7 +11,7 @@ function SearchControls() {
       </Tab>
 
       <Tab eventKey="coord" title="Coordinates">
-        <LatLngForm />
+        <CoordinatesForm />
       </Tab>
     </Tabs>
   )

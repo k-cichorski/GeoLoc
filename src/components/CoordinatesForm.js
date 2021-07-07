@@ -1,11 +1,11 @@
 import { Form, Button, InputGroup } from 'react-bootstrap';
-import './LatLngForm.css';
+import './CoordinatesForm.css';
 import getLocation from '../api/getLocation';
 import { useStateValue } from '../store/StateProvider';
 import { NEW_LOCATION } from '../store/reducer';
 import { useState } from 'react';
 
-function LatLngForm() {
+function CoordinatesForm() {
   const [{ coords }, dispatch] = useStateValue();
   const [lat, setLat] = useState(coords.lat);
   const [lng, setLng] = useState(coords.lng);
@@ -39,8 +39,8 @@ function LatLngForm() {
   };
 
   return (
-    <div className="latLngForm">
-      <Form noValidate onSubmit={onSubmit} className="latLngFormGroup">
+    <div className="coordinatesForm">
+      <Form noValidate onSubmit={onSubmit} className="coordinatesFormGroup">
         <InputGroup hasValidation>
           <InputGroup.Prepend>
             <InputGroup.Text>Lat:</InputGroup.Text>
@@ -50,7 +50,7 @@ function LatLngForm() {
             type="number"
             step="any"
             defaultValue={coords.lat}
-            placeholder={coords.lat}
+            placeholder={`e.g. ${coords.lat}`}
             isValid={regex.test(lat)}
             isInvalid={!regex.test(lat)}
             onChange={onChangeLat} />
@@ -68,7 +68,7 @@ function LatLngForm() {
             type="number"
             step="any"
             defaultValue={coords.lng}
-            placeholder={coords.lng}
+            placeholder={`e.g. ${coords.lng}`}
             isValid={regex.test(lng)}
             isInvalid={!regex.test(lng)}
             onChange={onChangeLng} />
@@ -84,4 +84,4 @@ function LatLngForm() {
   )
 }
 
-export default LatLngForm;
+export default CoordinatesForm;
