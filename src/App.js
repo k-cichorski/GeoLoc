@@ -3,14 +3,24 @@ import './App.css';
 import SearchControls from './components/SearchControls';
 import Map from './components/Map';
 import { useStateValue } from './store/StateProvider';
+import { Spinner } from 'react-bootstrap';
 
 function App() {
   const [state, ] = useStateValue();
+  const { searching } = state;
 
   return (
     <div id="main">
       <header>Welcome to GeoLoc!</header>
-      <p>Search by...</p>
+
+      <div className="spinner-wrapper">
+        {
+          searching ?
+              <Spinner animation="border" variant="warning" />
+            :
+            <p>Search by...</p>
+        }
+      </div>
       <SearchControls />
       <Map {...state} />
     </div>

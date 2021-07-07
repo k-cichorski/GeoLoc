@@ -21,7 +21,7 @@ function CoordinatesForm() {
     const processedLocation = await getLocation({
       location,
       label: `Lat: ${latInput.value}, Lng: ${lngInput.value}`
-    });
+    }, dispatch);
     processedLocation && dispatch(
       action(NEW_LOCATION, processedLocation)
     );

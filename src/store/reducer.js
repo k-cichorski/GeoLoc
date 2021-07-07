@@ -4,18 +4,26 @@ export const initialState = {
   userCoords: { lat: 51.5123443, lng: -0.0909852 },
   locName: 'City of London, London, UK',
   zoom: 13,
-  scrollWheelZoom: true
+  scrollWheelZoom: true,
+  searching: false
 };
 
 export const NEW_LOCATION = 'NEW_LOCATION';
 export const NEW_LAT = 'NEW_LAT';
 export const NEW_LNG = 'NEW_LNG';
+export const TOGGLE_SEARCHING = 'TOGGLE_SEARCHING';
 
-export function action(type, payload) {
+export function action(type, payload=null) {
   return {
     type,
     payload
   }
+}
+
+export function toggleSearching(dispatch) {
+  dispatch(
+    action(TOGGLE_SEARCHING)
+  );
 }
 
 function reducer(state, action) {
@@ -44,6 +52,11 @@ function reducer(state, action) {
           ...state.userCoords,
           lng: action.payload
         }
+      }
+    case TOGGLE_SEARCHING:
+      return {
+        ...state,
+        searching: !state.searching
       }
     default:
       return state;

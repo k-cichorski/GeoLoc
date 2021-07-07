@@ -14,7 +14,7 @@ const GeoSuggestConfig = {
 };
 
 function AddressForm() {
-  const [{locName}, dispatch] = useStateValue();
+  const [{ locName }, dispatch] = useStateValue();
   const map = useRef(null);
   const renderSuggestItem = function (suggestion) {
     return (
@@ -32,7 +32,7 @@ function AddressForm() {
     if (!suggestion) {
       return
     }
-    const location = await getLocation(suggestion);
+    const location = await getLocation(suggestion, dispatch);
     location && dispatch(
       action(NEW_LOCATION, location)
     );
