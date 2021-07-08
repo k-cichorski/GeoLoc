@@ -7,9 +7,7 @@ import { Spinner } from 'react-bootstrap';
 import pin from '../public/images/pin.svg';
 
 function App() {
-  const location = useSelector(state => state.location);
-  const appState = useSelector(state => state.appState);
-  const { searching } = appState;
+  const { searching } = useSelector(state => state.appState);
 
   return (
     <div id="main">
@@ -27,7 +25,7 @@ function App() {
       <SearchControls />
 
       <div className="map-container">
-        <Map {...location} />
+        <Map />
       </div>
     </div>
   );
