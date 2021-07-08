@@ -9,7 +9,7 @@ function CoordinatesForm() {
   const userCoords = useSelector(state => state.location.userCoords);
   const coords = useSelector(state => state.location.coords);
   const dispatch = useDispatch();
-  const regex = /(\d)*\.(\d)*$/i;
+  const regex = /^-?(\d)+\.(\d)+$/i;
 
   const onSubmit = async function (e) {
     e.preventDefault();
@@ -18,8 +18,8 @@ function CoordinatesForm() {
       return
     }
     const location = {
-      lat: parseFloat(latInput.value),
-      lng: parseFloat(lngInput.value),
+      lat: latInput.value,
+      lng: lngInput.value,
     };
     dispatch(
       getLocation({
@@ -31,13 +31,13 @@ function CoordinatesForm() {
 
   const onChangeLat = function (e) {
     dispatch(
-      newLat(parseFloat(e.target.value))
+      newLat(e.target.value)
     );
   };
 
   const onChangeLng = function (e) {
     dispatch(
-      newLng(parseFloat(e.target.value))
+      newLng(e.target.value)
     );
   };
 
