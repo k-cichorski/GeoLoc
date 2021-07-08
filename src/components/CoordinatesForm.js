@@ -1,12 +1,14 @@
 import { Form, Button, InputGroup } from 'react-bootstrap';
 import './CoordinatesForm.css';
 import getLocation from '../api/getLocation';
-import { useStateValue } from '../store/StateProvider';
-import { NEW_LOCATION, NEW_LAT, NEW_LNG, action } from '../store/reducer';
 import searchIcon from '../../public/images/search.svg';
+import { useSelector, useDispatch } from 'react-redux';
+import { newLat, newLng } from '../redux/slices/locationSlice';
 
 function CoordinatesForm() {
-  const [{ userCoords }, dispatch] = useStateValue();
+  const userCoords = useSelector(state => state.location.userCoords);
+  const coords = useSelector(state => state.location.coords);
+  const dispatch = useDispatch();
   const regex = /(\d)*\.(\d)*$/i;
 
   const onSubmit = async function (e) {
@@ -16,27 +18,26 @@ function CoordinatesForm() {
       return
     }
     const location = {
-      lat: latInput.value,
-      lng: lngInput.value,
+      lat: parseFloat(latInput.value),
+      lng: parseFloat(lngInput.value),
     };
-    const processedLocation = await getLocation({
-      location,
-      label: ''
-    }, dispatch);
-    processedLocation && dispatch(
-      action(NEW_LOCATION, processedLocation)
+    dispatch(
+      getLocation({
+        location,
+        label: ''
+      })
     );
   };
 
   const onChangeLat = function (e) {
     dispatch(
-      action(NEW_LAT, e.target.value)
+      newLat(parseFloat(e.target.value))
     );
   };
 
   const onChangeLng = function (e) {
     dispatch(
-      action(NEW_LNG, e.target.value)
+      newLng(parseFloat(e.target.value))
     );
   };
 
@@ -52,7 +53,7 @@ function CoordinatesForm() {
             type="number"
             step="any"
             value={userCoords.lat}
-            placeholder={`e.g. ${userCoords.lat}`}
+            placeholder={`e.g. ${coords.lat}`}
             isValid={regex.test(userCoords.lat)}
             isInvalid={!regex.test(userCoords.lat)}
             onChange={onChangeLat} />
@@ -70,7 +71,7 @@ function CoordinatesForm() {
             type="number"
             step="any"
             value={userCoords.lng}
-            placeholder={`e.g. ${userCoords.lng}`}
+            placeholder={`e.g. ${coords.lng}`}
             isValid={regex.test(userCoords.lng)}
             isInvalid={!regex.test(userCoords.lng)}
             onChange={onChangeLng} />

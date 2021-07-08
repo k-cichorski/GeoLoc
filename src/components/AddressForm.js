@@ -2,9 +2,9 @@ import Geosuggest from 'react-geosuggest';
 import { ListGroup } from 'react-bootstrap';
 import './AddressForm.css';
 import getLocation from '../api/getLocation';
-import { useStateValue } from '../store/StateProvider';
-import { NEW_LOCATION, action } from '../store/reducer';
 import { useRef, useEffect } from 'react';
+
+import { useSelector, useDispatch } from 'react-redux';
 
 const GeoSuggestConfig = {
   suggestsClassName: 'list-group',
@@ -14,8 +14,10 @@ const GeoSuggestConfig = {
 };
 
 function AddressForm() {
-  const [{ locName }, dispatch] = useStateValue();
+  const locName = useSelector(state => state.location.locName);
+  const dispatch = useDispatch();
   const geoSuggest = useRef(null);
+
   const renderSuggestItem = function (suggestion) {
     return (
       <ListGroup.Item action variant="light">
@@ -32,10 +34,7 @@ function AddressForm() {
     if (!suggestion) {
       return
     }
-    const location = await getLocation(suggestion, dispatch);
-    location && dispatch(
-      action(NEW_LOCATION, location)
-    );
+    dispatch(getLocation(suggestion));
   };
 
   return (

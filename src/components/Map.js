@@ -3,7 +3,7 @@ import { Spinner } from 'react-bootstrap';
 import MapPolygon from './MapPolygon';
 import './Map.css';
 
-function Map({ coords, locName, positions, zoom, scrollWheelZoom }) {
+const Map = React.memo(({ coords, locName, positions, zoom, scrollWheelZoom }) => {
   return (
     <MapContainer center={coords} zoom={zoom} scrollWheelZoom={scrollWheelZoom}
       placeholder={<Spinner animation="border" variant="warning" />} >
@@ -19,6 +19,8 @@ function Map({ coords, locName, positions, zoom, scrollWheelZoom }) {
       <MapPolygon positions={positions} zoom={zoom} />
     </MapContainer>
   )
-};
+}, function (oldParams, newParams) {
+  return oldParams.coords == newParams.coords
+});
 
 export default Map;

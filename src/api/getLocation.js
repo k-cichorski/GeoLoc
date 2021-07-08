@@ -1,5 +1,6 @@
 import { GET_GEO_JSON_URL } from "../../config";
-import { toggleSearching } from '../store/reducer';
+import { toggleSearch } from '../redux/slices/appStateSlice';
+import { newLocation } from '../redux/slices/locationSlice';
 
 function handleError(err) {
   console.error(err);
@@ -7,24 +8,28 @@ function handleError(err) {
   return null
 }
 
-async function getLocation({ location, label }, dispatch) {
-  const fetchUrl = `${GET_GEO_JSON_URL}?${new URLSearchParams(location)}`;
-  let response, geoJson;
-  toggleSearching(dispatch);
-  try {
-    response = await fetch(fetchUrl);
-    geoJson = await response.json();
-  } catch (err) {
-    return handleError(err);
-  } finally {
-    toggleSearching(dispatch);
+function getLocation({ location, label }) {
+  return async function (dispatch) {
+    const fetchUrl = `${GET_GEO_JSON_URL}?${new URLSearchParams(location)}`;
+    let response, geoJson;
+    dispatch(toggleSearch());
+    try {
+      response = await fetch(fetchUrl);
+      geoJson = await response.json();
+    } catch (err) {
+      return handleError(err);
+    } finally {
+      dispatch(toggleSearch());
+    }
+    const positions = geoJson.coordinates[0].map(([lng, lat]) => [lat, lng]);
+    dispatch(
+      newLocation({
+        positions: positions,
+        label,
+        coords: location
+      })
+    );
   }
-  const positions = geoJson.coordinates[0].map(([lng, lat]) => [lat, lng]);
-  return Promise.resolve({
-    location: positions,
-    label,
-    coords: location
-  });
 }
 
 export default getLocation;

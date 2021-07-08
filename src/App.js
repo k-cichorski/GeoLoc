@@ -2,13 +2,14 @@ import './custom.scss';
 import './App.css';
 import SearchControls from './components/SearchControls';
 import Map from './components/Map';
-import { useStateValue } from './store/StateProvider';
+import { useSelector } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
 import pin from '../public/images/pin.svg';
 
 function App() {
-  const [state,] = useStateValue();
-  const { searching } = state;
+  const location = useSelector(state => state.location);
+  const appState = useSelector(state => state.appState);
+  const { searching } = appState;
 
   return (
     <div id="main">
@@ -26,7 +27,7 @@ function App() {
       <SearchControls />
 
       <div className="map-container">
-        <Map {...state} />
+        <Map {...location} />
       </div>
     </div>
   );
