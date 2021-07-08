@@ -4,6 +4,12 @@ header {
   font-size: 2rem;
 }
 
+@media (max-width: 353px) {
+  header {
+    font-size: 1.5rem;
+  }
+}
+
 header>img {
   height: 3rem;
 }

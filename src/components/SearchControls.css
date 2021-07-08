@@ -26,3 +26,15 @@
     flex-direction: column;
   }
 }
+
+@media (max-width: 325px) {
+  .nav-tabs > a {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 285) {
+  .nav-tabs > a {
+    font-size: 0.4rem;
+  }
+}
