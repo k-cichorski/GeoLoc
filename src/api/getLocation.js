@@ -8,7 +8,7 @@ function handleError(err) {
   return null
 }
 
-function getLocation({ location, label }) {
+function getLocation({ location, label, userLocation }) {
   return async function (dispatch) {
     const fetchUrl = `${GET_GEO_JSON_URL}?${new URLSearchParams(location)}`;
     let response, geoJson;
@@ -16,38 +16,38 @@ function getLocation({ location, label }) {
     try {
       response = await fetch(fetchUrl);
       geoJson = await response.json();
+      const positions = geoJson.coordinates[0].map(([lng, lat]) => [lat, lng]);
+      dispatch(
+        newLocation({
+          positions: positions,
+          label,
+          coords: location,
+          userLocation
+        })
+      );
     } catch (err) {
       return handleError(err);
     } finally {
       dispatch(toggleSearch());
     }
-    const positions = geoJson.coordinates[0].map(([lng, lat]) => [lat, lng]);
-    dispatch(
-      newLocation({
-        positions: positions,
-        label,
-        coords: location
-      })
-    );
   }
 }
 
 function getUserLocation(map) {
   return function (dispatch) {
-    dispatch(toggleSearch());
-    dispatch(toggleFindUser());
     try {
       const location = map.locate();
       const handlePermission = (result) => {
         if (result.state == 'granted') {
-          location.on('locationfound', ({ latitude: lat, longitude: lng }) => {
+          location.once('locationfound', ({ latitude: lat, longitude: lng }) => {
             dispatch(
               getLocation({
                 location: { lat, lng },
-                label: ''
+                label: '',
+                userLocation: { lat, lng }
               })
             );
-            return
+            return null
           });
         } else if (result.state == 'denied') {
           alert('You have to allow location access!');
@@ -59,8 +59,6 @@ function getUserLocation(map) {
       });
     } catch (err) {
       return handleError(err)
-    } finally {
-      dispatch(toggleSearch());
     }
   }
 }

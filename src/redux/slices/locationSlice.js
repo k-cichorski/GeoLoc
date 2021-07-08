@@ -9,16 +9,18 @@ export const locationSlice = createSlice({
     locName: 'City of London, London, UK',
     zoom: 13,
     scrollWheelZoom: true,
-    findUser: false
+    findUser: false,
+    userLocation: null
   },
   reducers: {
     newLocation: (state, { payload }) => {
-      const { positions, label, coords } = payload;
+      const { positions, label, coords, userLocation=null } = payload;
       state.positions = positions;
       state.locName = label;
       state.coords = coords;
       state.userCoords = coords;
       state.findUser = false;
+      state.userLocation = userLocation;
     },
     newLat: (state, { payload }) => {
       state.userCoords.lat = payload;

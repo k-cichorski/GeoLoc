@@ -4,12 +4,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUserLocation } from '../api/getLocation';
 
 function MapLocator() {
-  const { findUser, positions, zoom } = useSelector(state => state.location);
+  const { findUser, positions, zoom, userLocation } = useSelector(state => state.location);
   const dispatch = useDispatch();
   const map = useMap();
-  
+
+  const isUserLocEqualToMapCntr = (userLocation, mapCenter) => {
+    if (userLocation === null)
+      return false
+    return !(Math.abs(userLocation.lat - mapCenter.lat) > 0.04 || Math.abs(userLocation.lng - mapCenter.lng) > 0.06)
+  };
+
   useEffect(() => {
-    if (findUser) {
+    const mapCenter = map.getCenter();
+    if (findUser && !isUserLocEqualToMapCntr(userLocation, mapCenter)) {
       dispatch(
         getUserLocation(map)
       );
