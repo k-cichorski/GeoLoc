@@ -1,6 +1,6 @@
 import { GET_GEO_JSON_URL } from "../../config";
 import { toggleSearch } from '../redux/slices/appStateSlice';
-import { newLocation, toggleFindUser } from '../redux/slices/locationSlice';
+import { newLocation } from '../redux/slices/locationSlice';
 
 function handleError(err) {
   console.error(err);
